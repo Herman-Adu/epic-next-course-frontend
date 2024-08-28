@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useFormState } from "react-dom";
-
 import { registerUserAction } from "@/data/actions/auth-actions";
 
 import {
@@ -17,6 +16,8 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { ZodErrors } from "../custom/ZodErrors";
+import { StrapiErrors } from "@/components/custom/StrapiErrors";
+import { SubmitButton } from "@/components/custom/SubmitButton";
 
 const INITIAL_STATE = {
   data: null,
@@ -75,7 +76,12 @@ export function SignupForm() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col">
-            <button className="w-full">Sign</button>
+            <SubmitButton
+              className="w-full"
+              text="Sign Up"
+              loadingText="Loading"
+            />
+            <StrapiErrors error={formState?.strapiErrors} />
           </CardFooter>
         </Card>
         <div className="mt-4 text-center text-sm">
