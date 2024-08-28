@@ -1,7 +1,7 @@
 import qs from "qs";
 import { unstable_noStore as noStore } from "next/cache";
 
-import { flattenAttributes, getStrapiURL } from "@/lib/utils";
+import { flattenAttributes, getStrapiURL } from "@/lib/";
 
 const baseUrl = getStrapiURL();
 
