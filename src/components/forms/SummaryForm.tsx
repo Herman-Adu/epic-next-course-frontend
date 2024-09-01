@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { cn, extractYouTubeID } from "@/lib/utils";
+
 import { generateSummaryService } from "@/data/services/summary-service";
+import { createSummaryAction } from "@/data/actions/summary-actions";
 
 import { Input } from "@/components/ui/input";
 import { SubmitButton } from "@/components/custom/SubmitButton";
@@ -44,7 +46,7 @@ export function SummaryForm() {
       return;
     }
 
-    console.log(videoId);
+    toast.success("Generating Summary");
 
     const summaryResponseData = await generateSummaryService(videoId);
     console.log(summaryResponseData, "Response from route handler");
@@ -55,6 +57,29 @@ export function SummaryForm() {
       setError({
         ...INITIAL_STATE,
         message: summaryResponseData.error,
+        name: "Summary Error",
+      });
+      setLoading(false);
+      return;
+    }
+
+    const payload = {
+      data: {
+        title: `Summary for video: ${processedVideoId}`,
+        videoId: processedVideoId,
+        summary: summaryResponseData.data,
+      },
+    };
+
+    //console.log("Payload: ", payload);
+
+    try {
+      await createSummaryAction(payload);
+    } catch (error) {
+      toast.error("Failed to create summary");
+      setError({
+        ...INITIAL_STATE,
+        message: "Failed to create summary",
         name: "Summary Error",
       });
       setLoading(false);
