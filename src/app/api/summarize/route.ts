@@ -89,7 +89,6 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { videoId } = body;
 
-  // get transcript from youtube
   let transcript: Awaited<ReturnType<typeof fetchTranscript>>;
 
   try {

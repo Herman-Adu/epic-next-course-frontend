@@ -1,11 +1,12 @@
 import qs from "qs";
+import { getAuthToken } from "./services/get-token";
 
 import { flattenAttributes, getStrapiURL } from "@/lib/utils";
 
 const baseUrl = getStrapiURL();
 
 async function fetchData(url: string) {
-  const authToken = null;
+  const authToken = await getAuthToken();
 
   const headers = {
     method: "GET",
@@ -72,4 +73,13 @@ export async function getGlobalPageMetadata() {
   });
 
   return await fetchData(url.href);
+}
+
+export async function getSummaries() {
+  const url = new URL("/api/summaries", baseUrl);
+  return fetchData(url.href);
+}
+
+export async function getSummaryById(summaryId: string) {
+  return fetchData(`${baseUrl}/api/summaries/${summaryId}`);
 }
