@@ -12,6 +12,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "placehold.co",
       },
+      {
+        protocol: "https",
+        hostname: "https://joyful-eggs-e949c5ab72.strapiapp.com",
+      },
     ],
   },
 };
