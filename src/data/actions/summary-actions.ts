@@ -18,9 +18,17 @@ export async function createSummaryAction(payload: Payload) {
   const authToken = await getAuthToken();
   if (!authToken) throw new Error("No auth token found");
 
-  const data = await mutateData("POST", "/api/summaries", payload);
-  const flattenedData = flattenAttributes(data);
-  redirect("/dashboard/summaries/" + flattenedData.id);
+  try {
+    const data = await mutateData("POST", "/api/summaries", payload);
+    const flattenedData = flattenAttributes(data);
+    redirect("/dashboard/summaries/" + flattenedData.id);
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+
+  // const data = await mutateData("POST", "/api/summaries", payload);
+  // const flattenedData = flattenAttributes(data);
+  // redirect("/dashboard/summaries/" + flattenedData.id);
 }
 
 export async function updateSummaryAction(prevState: any, formData: FormData) {
