@@ -14,7 +14,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "joyful-eggs-e949c5ab72.strapiapp.com",
+        hostname: "joyful-eggs-e949c5ab72.media.strapiapp.com",
       },
     ],
   },
