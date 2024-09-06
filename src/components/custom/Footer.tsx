@@ -27,7 +27,11 @@ function selectSocialIcon(url: string) {
 }
 
 export function Footer({ data }: Readonly<FooterProps>) {
+  //console.log("Footer - data: ", data);
+
   const { logoText, socialLink, text } = data;
+  //console.log("Social Links: ", socialLink);
+
   return (
     <div className="dark bg-gray-900 text-white py-8">
       <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between">
@@ -35,11 +39,13 @@ export function Footer({ data }: Readonly<FooterProps>) {
         <p className="mt-4 md:mt-0 text-sm text-gray-300">{text}</p>
         <div className="flex items-center space-x-4">
           {socialLink.map((link) => {
+            //console.log("Footer - link: ", link);
             return (
               <Link
                 key={link.id}
                 className="text-white hover:text-gray-300"
                 href={link.url}
+                target="_blank"
               >
                 {selectSocialIcon(link.url)}
                 <span className="sr-only">Visit us at {link.text}</span>
