@@ -8,7 +8,8 @@ import { generateSummaryService } from "@/data/services/summary-service";
 import { createSummaryAction } from "@/data/actions/summary-actions";
 
 import { Input } from "@/components/ui/input";
-import { SubmitButton } from "@/components/custom/SubmitButton";
+//import { SubmitButton } from "@/components/custom/SubmitButton";
+import { Button } from "../ui/button";
 
 interface StrapiErrorsProps {
   message: string | null;
@@ -120,11 +121,13 @@ export function SummaryForm() {
           required
         />
 
-        <SubmitButton
+        {/* <SubmitButton
           text="Create Summary"
           loadingText="Creating Summary"
           loading={loading}
-        />
+        /> */}
+
+        <Button disabled={true}>Creating Summary</Button>
       </form>
     </div>
   );
